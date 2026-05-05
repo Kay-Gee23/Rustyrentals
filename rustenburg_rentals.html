@@ -35,6 +35,11 @@
   </div>
 </section>
 
+<!-- WhatsApp Button -->
+<a href="https://wa.me/27839725066" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center space-x-2 transition-transform hover:scale-105">
+  <span class="font-bold">WhatsApp Us</span>
+</a>
+
 <script>
 let properties = JSON.parse(localStorage.getItem('properties')) || [];
 
@@ -48,6 +53,7 @@ function renderProperties() {
         <img src="${p.image}" class="w-full h-40 object-cover">
         <h3 class="font-bold mt-2">${p.title}</h3>
         <p>${p.price}</p>
+        <a href="https://wa.me/27839725066?text=Hi, I'm interested in: ${p.title}" target="_blank" class="mt-2 inline-block bg-green-500 text-white px-4 py-2 rounded text-sm hover:bg-green-600 transition">Inquire via WhatsApp</a>
       </div>
     `;
   });
