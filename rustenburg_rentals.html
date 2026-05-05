@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rustenburg Rentals</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Rustenburg Rentals</h1>
+  </div>
+</header>
+
+<section class="py-20 text-center bg-blue-600 text-white">
+  <h2 class="text-4xl font-bold">Find Your Perfect Space</h2>
+</section>
+
+<section class="py-16 max-w-7xl mx-auto px-6">
+  <div id="propertyList" class="grid md:grid-cols-3 gap-8"></div>
+</section>
+
+<section class="py-16 bg-gray-100">
+  <div class="max-w-3xl mx-auto px-6">
+    <form id="adminForm" class="grid gap-4">
+      <input type="text" id="title" placeholder="Title" required class="p-3 border rounded">
+      <input type="text" id="price" placeholder="Price" required class="p-3 border rounded">
+      <input type="text" id="image" placeholder="Image URL" required class="p-3 border rounded">
+      <input type="text" id="ownerContact" placeholder="Phone" required class="p-3 border rounded">
+      <button class="bg-green-600 text-white py-3 rounded">Add Property</button>
+    </form>
+  </div>
+</section>
+
+<script>
+let properties = JSON.parse(localStorage.getItem('properties')) || [];
+
+function renderProperties() {
+  const list = document.getElementById('propertyList');
+  list.innerHTML = '';
+
+  properties.forEach((p, index) => {
+    list.innerHTML += `
+      <div class="bg-white p-4 shadow rounded">
+        <img src="${p.image}" class="w-full h-40 object-cover">
+        <h3 class="font-bold mt-2">${p.title}</h3>
+        <p>${p.price}</p>
+      </div>
+    `;
+  });
+}
+
+document.getElementById('adminForm').addEventListener('submit', e => {
+  e.preventDefault();
+
+  properties.push({
+    title: title.value,
+    price: price.value,
+    image: image.value,
+    ownerContact: ownerContact.value
+  });
+
+  localStorage.setItem('properties', JSON.stringify(properties));
+  renderProperties();
+  e.target.reset();
+});
+
+renderProperties();
+</script>
+
+</body>
+</html>
